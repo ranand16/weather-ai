@@ -1,10 +1,10 @@
 "use client";
 
-import { Country } from "country-state-city";
+import { City, Country } from "country-state-city";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Select from "react-select";
-import {GlobeIcon} from "@heroicons/react/solid"
+import { GlobeIcon } from "@heroicons/react/solid";
 type option = {
   value: {
     latitude: string;
@@ -25,7 +25,19 @@ type cityOption = {
   label: string;
 } | null;
 
-const options = Country.getAllCountries().map((c) => ({
+const cityOptions = (country: option) =>
+  City.getCitiesOfCountry(country?.value.isoCode || "")?.map((state) => ({
+    value: {
+      latitude: state?.latitude || "",
+      longitude: state?.longitude || "",
+      countryCode: state?.countryCode || "",
+      name: state?.name || "",
+      stateCode: state?.stateCode || "",
+    },
+    label: state?.name || "",
+  }));
+
+const countryOptions = Country.getAllCountries().map((c) => ({
   value: {
     latitude: c.latitude,
     longitude: c.longitude,
@@ -45,18 +57,42 @@ const CityPicker = () => {
     setSelectedCity(null);
   };
 
+  const handleSelectedCity = (cityOption: cityOption) => {
+    setSelectedCity(cityOption);
+    router.push(
+      `/location/${cityOption?.value.latitude}/${cityOption?.value.longitude}`
+    );
+  };
+
   return (
-    <div className="">
-      <div>
-        <GlobeIcon  />
-        <label htmlFor="country">Country</label>
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <div className="flex items-center space-x-2 text-white/80">
+          <GlobeIcon className="h-5 w-5 text-white" />
+          <label htmlFor="country">Country</label>
+        </div>
+        <Select
+          className="text-black"
+          value={selectedCountry}
+          onChange={handleSelectedCountry}
+          options={countryOptions}
+        />
       </div>
-      <Select
-        className="text-black"
-        value={selectedCountry}
-        onChange={handleSelectedCountry}
-        options={options}
-      />
+
+      {selectedCountry && (
+        <div className="space-y-2">
+          <div className="flex items-center space-x-2 text-white/80">
+            <GlobeIcon className="h-5 w-5 text-white" />
+            <label htmlFor="city">City</label>
+          </div>
+          <Select
+            className="text-black"
+            value={selectedCity}
+            onChange={handleSelectedCity}
+            options={cityOptions(selectedCountry)}
+          />
+        </div>
+      )}
     </div>
   );
 };
