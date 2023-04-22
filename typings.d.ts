@@ -1,83 +1,83 @@
 interface CurrentWeather {
-  is_day: Int!;
-  temperature: Float!;
-  time: DateTime!;
-  weathercode: Int!;
-  winddirection: Int!;
-  windspeed: Float!;
+  is_day: number;
+  temperature: number;
+  time: DateTime;
+  weathercode: number;
+  winddirection: number;
+  windspeed: number;
 }
 
 interface Daily {
-  apparent_temperature_max: [Float!]!;
-  apparent_temperature_min: [Float!]!;
-  sunrise: [DateTime!]!;
-  sunset: [DateTime!]!;
-  temperature_2m_max: [Float!]!;
-  temperature_2m_min: [Float!]!;
-  time: [Date!]!;
-  uv_index_clear_sky_max: [Float!]!;
-  uv_index_max: [Float!]!;
-  weathercode: [Int!]!;
+  apparent_temperature_max: number[];
+  apparent_temperature_min: number[];
+  sunrise: DateTime[];
+  sunset: DateTime[];
+  temperature_2m_max: number[];
+  temperature_2m_min: number[];
+  time: Date[];
+  uv_index_clear_sky_max: number[];
+  uv_index_max: number[];
+  weathercode: number[];
 }
 
 interface DailyUnits {
-  apparent_temperature_max: String!;
-  apparent_temperature_min: String!;
-  sunrise: String!;
-  sunset: String!;
-  temperature_2m_max: String!;
-  temperature_2m_min: String!;
-  time: String!;
-  uv_index_clear_sky_max: String!;
-  uv_index_max: String!;
-  weathercode: String!;
+  apparent_temperature_max: string;
+  apparent_temperature_min: string;
+  sunrise: string;
+  sunset: string;
+  temperature_2m_max: string;
+  temperature_2m_min: string;
+  time: string;
+  uv_index_clear_sky_max: string;
+  uv_index_max: string;
+  weathercode: string;
 }
 
 interface Hourly {
-  apparent_temperature: [Float!]!;
-  is_day: [Int!]!;
-  precipitation: [Float!]!;
-  precipitation_probability: [Int!]!;
-  rain: [Int!]!;
-  relativehumidity_2m: [Int!]!;
-  showers: [Float!]!;
-  snow_depth: [Int!]!;
-  snowfall: [Int!]!;
-  temperature_2m: [Float!]!;
-  time: [DateTime!]!;
-  uv_index: [Float!]!;
-  uv_index_clear_sky: [Float!]!;
-  windgusts_10m: [Float!]!;
+  apparent_temperature: number[];
+  is_day: number[];
+  precipitation: number[];
+  precipitation_probability: number[];
+  rain: number[];
+  relativehumidity_2m: number[];
+  showers: number[];
+  snow_depth: number[];
+  snowfall: number[];
+  temperature_2m: number[];
+  time: DateTime[];
+  uv_index: number[];
+  uv_index_clear_sky: number[];
+  windgusts_10m: number[];
 }
 
 interface HourlyUnits {
-  apparent_temperature: String!;
-  is_day: String!;
-  precipitation: String!;
-  precipitation_probability: String!;
-  rain: String!;
-  relativehumidity_2m: String!;
-  showers: String!;
-  snow_depth: String!;
-  snowfall: String!;
-  temperature_2m: String!;
-  time: String!;
-  uv_index: String!;
-  uv_index_clear_sky: String!;
-  windgusts_10m: String!;
+  apparent_temperature: string;
+  is_day: string;
+  precipitation: string;
+  precipitation_probability: string;
+  rain: string;
+  relativehumidity_2m: string;
+  showers: string;
+  snow_depth: string;
+  snowfall: string;
+  temperature_2m: string;
+  time: string;
+  uv_index: string;
+  uv_index_clear_sky: string;
+  windgusts_10m: string;
 }
 
 interface Root {
   current_weather: CurrentWeather;
   daily: Daily;
   daily_units: DailyUnits;
-  elevation: Int;
-  generationtime_ms: Float;
+  elevation: number;
+  generationtime_ms: number;
   hourly: Hourly;
   hourly_units: HourlyUnits;
-  latitude: Float;
-  longitude: Float;
-  timezone: String;
-  timezone_abbreviation: Int;
-  utc_offset_seconds: Int;
+  latitude: number;
+  longitude: number;
+  timezone: string;
+  timezone_abbreviation: number;
+  utc_offset_seconds: number;
 }
