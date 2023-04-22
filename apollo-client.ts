@@ -8,6 +8,7 @@ export function getClient(): ApolloClient<any> {
 
   return new ApolloClient({
     cache,
+    uri: process.env.API_URL,
     link,
     headers: {
       Authorization: `apikey ${process.env.NEXT_PUBLIC_STEPZEN_API_KEY}`,
