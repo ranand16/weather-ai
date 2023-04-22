@@ -17,6 +17,10 @@ export default function InformationPanel({
   long,
   results,
 }: InformationPanelProps) {
+  console.log(
+    "results.current_weather.weathercode ::: ",
+    results.current_weather.weathercode
+  );
   return (
     <div className="bg-gradient-to-br from-[#394F68] to-[#183B7E] text-white p-10">
       <div className="pb-5">
