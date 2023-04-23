@@ -6,9 +6,7 @@ import RainChart from "@/components/RainChart";
 import StatCard from "@/components/StatCard";
 import TempChart from "@/components/TempChart";
 import { GET_QUERY } from "@/graphql/queries/fetchWeather";
-import { cleanData } from "@/lib/cleanData";
 import { basePath } from "@/lib/platform";
-import axios from "axios";
 import React from "react";
 
 interface WeatherProps {
