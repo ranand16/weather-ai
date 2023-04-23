@@ -86,6 +86,7 @@ const CityPicker = () => {
             <label htmlFor="city">City</label>
           </div>
           <Select
+            id={"city-selector"}
             className="text-black"
             value={selectedCity}
             onChange={handleSelectedCity}

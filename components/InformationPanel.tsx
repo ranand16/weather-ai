@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import CityPicker from "./CityPicker";
 import { weatherCodeToString } from "@/lib/WeatherCodeToString";
@@ -17,10 +19,12 @@ export default function InformationPanel({
   long,
   results,
 }: InformationPanelProps) {
-  console.log(
-    "results.current_weather.weathercode ::: ",
-    results.current_weather.weathercode
-  );
+  const date = new Date();
+  const currTime = date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
   return (
     <div className="bg-gradient-to-br from-[#394F68] to-[#183B7E] text-white p-10">
       <div className="pb-5">
@@ -34,7 +38,7 @@ export default function InformationPanel({
       <div className="mt-5 flex items-center justify-between space-x-10 mb-5">
         <div>
           <p className="text-xl">
-            {new Date().toLocaleDateString("en-GB", {
+            {new Date().toLocaleDateString("en-US", {
               weekday: "long",
               year: "numeric",
               month: "long",
@@ -45,13 +49,7 @@ export default function InformationPanel({
             Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}
           </p>
         </div>
-        <p className="text-xl font-bold uppercase">
-          {new Date().toLocaleTimeString("en-GB", {
-            hour: "numeric",
-            minute: "numeric",
-            hour12: true,
-          })}
-        </p>
+        {/* <p className="text-xl font-bold uppercase">{date}</p> */}
       </div>
       <hr className="mt-10 mb-5" />
       <div>
@@ -80,11 +78,11 @@ export default function InformationPanel({
           <div className="flex-1 flex justify-between items-center">
             <p className="font-extralight">Sunrise</p>
             <p className="uppercase text-2xl">
-              {new Date(results.daily.sunrise[0]).toLocaleTimeString("en-US", {
+              {/* {new Date(results.daily.sunrise[0]).toLocaleTimeString("en-US", {
                 hour: "numeric",
                 minute: "numeric",
-                hour12: false,
-              })}
+                hour12: true,
+              })} */}
             </p>
           </div>
         </div>
@@ -94,11 +92,11 @@ export default function InformationPanel({
           <div className="flex-1 flex justify-between items-center">
             <p className="font-extralight">Sunset</p>
             <p className="uppercase text-2xl">
-              {new Date(results.daily.sunset[0]).toLocaleTimeString("en-US", {
+              {/* {new Date(results.daily.sunset[0]).toLocaleTimeString("en-US", {
                 hour: "numeric",
                 minute: "numeric",
-                hour12: false,
-              })}
+                hour12: true,
+              })} */}
             </p>
           </div>
         </div>

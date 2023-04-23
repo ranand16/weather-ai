@@ -105,15 +105,15 @@ export const weatherCodeToString: {
     label: "Snow showers: Heavy intensity",
   },
   95: {
-    icon: "a17d",
+    icon: "a06d",
     label: "Thunderstorm: Slight or moderate",
   },
   96: {
-    icon: "a18d",
+    icon: "a06d",
     label: "Thunderstorm with slight hail",
   },
   99: {
-    icon: "a19d",
+    icon: "a06d",
     label: "Thunderstorm with heavy hail",
   },
 };
