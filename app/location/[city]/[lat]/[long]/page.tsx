@@ -6,6 +6,9 @@ import RainChart from "@/components/RainChart";
 import StatCard from "@/components/StatCard";
 import TempChart from "@/components/TempChart";
 import { GET_QUERY } from "@/graphql/queries/fetchWeather";
+import { cleanData } from "@/lib/cleanData";
+import { basePath } from "@/lib/platform";
+import axios from "axios";
 import React from "react";
 
 interface WeatherProps {
@@ -28,7 +31,32 @@ async function Weather({ params: { city, lat, long } }: WeatherProps) {
     },
   });
   const results: Root = data.myQuery;
-  console.log("🚀 ~ file: page.tsx:30 ~ results:", results);
+
+  const getBasePath = basePath();
+  console.log("🚀 ~ file: page.tsx:37 ~ Weather ~ getBasePath:", getBasePath);
+  const dataForSummary = await fetch(`${getBasePath}/api/getWeatherSummary`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      weatherData: cleanData(results, city),
+    }),
+  });
+  console.log(
+    "🚀 ~ file: page.tsx:38 ~ dataForSummary ~ dataForSummary:",
+    dataForSummary
+  );
+
+  dataForSummary
+    .json()
+    .then((res) => {
+      console.log("🚀 ~ file: page.tsx:50 ~ Weather ~ summaryResponse:");
+      console.log(res);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 
   return (
     <div className="flex flex-col min-h-screen md:flex-row">
