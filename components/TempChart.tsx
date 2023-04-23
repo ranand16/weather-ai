@@ -7,7 +7,7 @@ interface TempChartProps {
   results: Root;
 }
 const TempChart: React.FC<TempChartProps> = ({ results }) => {
-  const hourly = results.hourly.time
+  const hourly = results?.hourly.time
     .map((time) =>
       new Date(time).toLocaleString("en-US", {
         hour: "numeric",
@@ -18,8 +18,8 @@ const TempChart: React.FC<TempChartProps> = ({ results }) => {
 
   const data = hourly.map((hour, i) => ({
     time: Number(hour),
-    "UV Index": results.hourly.uv_index[i],
-    "Temperature (C)": results.hourly.temperature_2m[i],
+    "UV Index": results?.hourly.uv_index[i],
+    "Temperature (C)": results?.hourly.temperature_2m[i],
   }));
 
   return (

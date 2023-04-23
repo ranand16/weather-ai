@@ -7,7 +7,7 @@ interface RainChartProps {
   results: Root;
 }
 const RainChart: React.FC<RainChartProps> = ({ results }) => {
-  const hourly = results.hourly.time
+  const hourly = results?.hourly.time
     .map((time) =>
       new Date(time).toLocaleString("en-US", {
         hour: "numeric",
@@ -18,7 +18,7 @@ const RainChart: React.FC<RainChartProps> = ({ results }) => {
 
   const data = hourly.map((hour, i) => ({
     time: Number(hour),
-    "Rain (%)": results.hourly.precipitation_probability[i],
+    "Rain (%)": results?.hourly.precipitation_probability[i],
   }));
 
   return (

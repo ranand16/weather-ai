@@ -7,7 +7,7 @@ interface HumidityChartProps {
   results: Root;
 }
 const HumidityChart: React.FC<HumidityChartProps> = ({ results }) => {
-  const hourly = results.hourly.time
+  const hourly = results?.hourly.time
     .map((time) =>
       new Date(time).toLocaleString("en-US", {
         hour: "numeric",
@@ -18,7 +18,7 @@ const HumidityChart: React.FC<HumidityChartProps> = ({ results }) => {
 
   const data = hourly.map((hour, i) => ({
     time: Number(hour),
-    "Humidity (%)": results.hourly.relativehumidity_2m[i],
+    "Humidity (%)": results?.hourly.relativehumidity_2m[i],
   }));
 
   return (

@@ -67,8 +67,8 @@ async function Weather({ params: { city, lat, long } }: WeatherProps) {
             <h2 className="text-xl font-bold">Todays Overview</h2>
             <p className="text-sm text-gray-400">
               Last updated at:
-              {new Date(results.current_weather.time).toLocaleDateString()}
-              {results.timezone}
+              {new Date(results?.current_weather.time).toLocaleDateString()}
+              {results?.timezone}
             </p>
           </div>
           <div className="m-2 mb-10">
@@ -91,7 +91,7 @@ async function Weather({ params: { city, lat, long } }: WeatherProps) {
                 color="rose"
                 metric={results?.daily.uv_index_max[0].toFixed(1)}
               />
-              {Number(results.daily?.uv_index_max[0]?.toFixed(1)) > 5 && (
+              {Number(results?.daily?.uv_index_max[0]?.toFixed(1)) > 5 && (
                 <CalloutCard message={"The UV is high today "} warning />
               )}
             </div>
@@ -99,12 +99,14 @@ async function Weather({ params: { city, lat, long } }: WeatherProps) {
               <StatCard
                 title="Wind Speed"
                 color="cyan"
-                metric={`${results?.current_weather.windspeed.toFixed(1)}m/s`}
+                metric={`${results?.current_weather?.windspeed.toFixed(1)}m/s`}
               />
               <StatCard
                 title="Wind Direction"
                 color="violet"
-                metric={`${results?.current_weather.winddirection.toFixed(1)}°`}
+                metric={`${results?.current_weather?.winddirection.toFixed(
+                  1
+                )}°`}
               />
             </div>
           </div>
